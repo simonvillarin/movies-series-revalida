@@ -101,7 +101,6 @@ const Show = () => {
       addUserList(user.id, payload, token)
         .then((res) => console.log("Show added to list"))
         .catch((err) => handleError());
-      setIsSnackbarOpen(true);
       setIsAdd(true);
     } else {
       handleError();
@@ -113,7 +112,6 @@ const Show = () => {
       removeUserList(id, token)
         .then((res) => console.log("Removed from list"))
         .catch((err) => handleError());
-      setIsSnackbarOpen(true);
       setIsAdd(false);
     } else {
       handleError();

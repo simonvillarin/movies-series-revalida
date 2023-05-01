@@ -46581,7 +46581,6 @@ attempted value: ${formattedValue}
           type
         };
         addUserList(user.id, payload, token2).then((res) => console.log("Show added to list")).catch((err) => handleError());
-        setIsSnackbarOpen(true);
         setIsAdd(true);
       } else {
         handleError();
@@ -46590,7 +46589,6 @@ attempted value: ${formattedValue}
     const handleRemoveFromList = () => {
       if (token2 && user) {
         removeUserList(id, token2).then((res) => console.log("Removed from list")).catch((err) => handleError());
-        setIsSnackbarOpen(true);
         setIsAdd(false);
       } else {
         handleError();
