@@ -46533,7 +46533,6 @@ attempted value: ${formattedValue}
       production_companies = []
     } = show;
     const { setIsUserLoggedIn } = (0, import_react36.useContext)(UserContext);
-    const [event, setEvent] = (0, import_react35.useState)(false);
     const navigate2 = useNavigate();
     let token2 = getToken();
     let user = getCurrentUser();
@@ -46582,8 +46581,8 @@ attempted value: ${formattedValue}
           type
         };
         addUserList(user.id, payload, token2).then((res) => console.log("Show added to list")).catch((err) => handleError());
-        window.location.reload();
         setIsSnackbarOpen(true);
+        setIsAdd(true);
       } else {
         handleError();
       }
@@ -46591,13 +46590,12 @@ attempted value: ${formattedValue}
     const handleRemoveFromList = () => {
       if (token2 && user) {
         removeUserList(id, token2).then((res) => console.log("Removed from list")).catch((err) => handleError());
-        window.location.reload();
         setIsSnackbarOpen(true);
+        setIsAdd(false);
       } else {
         handleError();
       }
     };
-    const [isSnackbarOpen, setIsSnackbarOpen] = (0, import_react35.useState)(false);
     return /* @__PURE__ */ import_react35.default.createElement(import_react35.default.Fragment, null, /* @__PURE__ */ import_react35.default.createElement(Appbar_default, null), /* @__PURE__ */ import_react35.default.createElement("div", { className: "show-container" }, /* @__PURE__ */ import_react35.default.createElement(
       "div",
       {
@@ -46606,47 +46604,7 @@ attempted value: ${formattedValue}
           backgroundImage: `url(${POSTER_IMG}${backdrop_path})`
         }
       }
-    ), /* @__PURE__ */ import_react35.default.createElement(Container_default, null, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "show-content-container" }, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "left-show-container" }, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "show-img" }, /* @__PURE__ */ import_react35.default.createElement("img", { src: `${POSTER_IMG}${poster_path}`, alt: title })), /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "votes" }, /* @__PURE__ */ import_react35.default.createElement(Typography_default, { variant: "body2" }, vote_average, " / ", vote_count, " voted"))), /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "right-show-container" }, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "btn-container" }, isAdd ? /* @__PURE__ */ import_react35.default.createElement("div", null, /* @__PURE__ */ import_react35.default.createElement("button", { className: "add-btn", onClick: handleRemoveFromList }, /* @__PURE__ */ import_react35.default.createElement(FiTrash2, null), "Remove from List"), /* @__PURE__ */ import_react35.default.createElement(
-      Snackbar_default,
-      {
-        autoHideDuration: 1e3,
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "right"
-        },
-        open: isSnackbarOpen,
-        onClose: () => setIsSnackbarOpen(false)
-      },
-      /* @__PURE__ */ import_react35.default.createElement(
-        Alert_default,
-        {
-          onClose: () => setIsSnackbarOpen(false),
-          severity: "error",
-          sx: { width: "100%" }
-        },
-        "Successfully removed from the list"
-      )
-    )) : /* @__PURE__ */ import_react35.default.createElement("div", null, /* @__PURE__ */ import_react35.default.createElement("button", { className: "add-btn", onClick: handleAddToList }, /* @__PURE__ */ import_react35.default.createElement(FiPlus, null), "Add to List"), /* @__PURE__ */ import_react35.default.createElement(
-      Snackbar_default,
-      {
-        autoHideDuration: 1e3,
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "right"
-        },
-        open: isSnackbarOpen,
-        onClose: () => setIsSnackbarOpen(false)
-      },
-      /* @__PURE__ */ import_react35.default.createElement(
-        Alert_default,
-        {
-          onClose: () => setIsSnackbarOpen(false),
-          severity: "success",
-          sx: { width: "100%" }
-        },
-        "Successfully added to the list"
-      )
-    ))), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { variant: "h4", sx: { mb: 3 } }, title || name), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 3 } }, overview), /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "details" }, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "left-details" }, /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Released Date: "), release_date || first_air_date), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Genre: "), genresStr), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Production: "), companiesStr)), /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "right-details" }, /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Duration: "), runtime || 30, " min"), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Country: "), countrieStr))))))), /* @__PURE__ */ import_react35.default.createElement(Footer_default, null));
+    ), /* @__PURE__ */ import_react35.default.createElement(Container_default, null, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "show-content-container" }, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "left-show-container" }, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "show-img" }, /* @__PURE__ */ import_react35.default.createElement("img", { src: `${POSTER_IMG}${poster_path}`, alt: title })), /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "votes" }, /* @__PURE__ */ import_react35.default.createElement(Typography_default, { variant: "body2" }, vote_average, " / ", vote_count, " voted"))), /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "right-show-container" }, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "btn-container" }, isAdd ? /* @__PURE__ */ import_react35.default.createElement("div", null, /* @__PURE__ */ import_react35.default.createElement("button", { className: "add-btn", onClick: handleRemoveFromList }, /* @__PURE__ */ import_react35.default.createElement(FiTrash2, null), "Remove from List")) : /* @__PURE__ */ import_react35.default.createElement("div", null, /* @__PURE__ */ import_react35.default.createElement("button", { className: "add-btn", onClick: handleAddToList }, /* @__PURE__ */ import_react35.default.createElement(FiPlus, null), "Add to List"))), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { variant: "h4", sx: { mb: 3 } }, title || name), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 3 } }, overview), /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "details" }, /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "left-details" }, /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Released Date: "), release_date || first_air_date), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Genre: "), genresStr), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Production: "), companiesStr)), /* @__PURE__ */ import_react35.default.createElement(Box_default, { className: "right-details" }, /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Duration: "), runtime || 30, " min"), /* @__PURE__ */ import_react35.default.createElement(Typography_default, { paragraph: true, sx: { mb: 1 } }, /* @__PURE__ */ import_react35.default.createElement("strong", null, "Country: "), countrieStr))))))), /* @__PURE__ */ import_react35.default.createElement(Footer_default, null));
   };
   var Show_default = Show;
 

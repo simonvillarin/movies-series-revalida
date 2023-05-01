@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { POSTER_IMG } from "env";
-import { Typography, Box, Container, Snackbar, Alert } from "@mui/material";
+import { Typography, Box, Container } from "@mui/material";
 import { FiPlus, FiTrash2 } from "react-icons/fi";
 import { getShowById } from "../services/ExternalAPIService";
 import {
@@ -39,7 +39,6 @@ const Show = () => {
     production_companies = [],
   } = show;
   const { setIsUserLoggedIn } = useContext(UserContext);
-  const [event, setEvent] = useState(false);
   const navigate = useNavigate();
   let token = getToken();
   let user = getCurrentUser();
@@ -102,8 +101,8 @@ const Show = () => {
       addUserList(user.id, payload, token)
         .then((res) => console.log("Show added to list"))
         .catch((err) => handleError());
-      window.location.reload();
       setIsSnackbarOpen(true);
+      setIsAdd(true);
     } else {
       handleError();
     }
@@ -114,14 +113,12 @@ const Show = () => {
       removeUserList(id, token)
         .then((res) => console.log("Removed from list"))
         .catch((err) => handleError());
-      window.location.reload();
       setIsSnackbarOpen(true);
+      setIsAdd(false);
     } else {
       handleError();
     }
   };
-
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
   return (
     <React.Fragment>
@@ -154,23 +151,6 @@ const Show = () => {
                       <FiTrash2 />
                       Remove from List
                     </button>
-                    <Snackbar
-                      autoHideDuration={1000}
-                      anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "right",
-                      }}
-                      open={isSnackbarOpen}
-                      onClose={() => setIsSnackbarOpen(false)}
-                    >
-                      <Alert
-                        onClose={() => setIsSnackbarOpen(false)}
-                        severity="error"
-                        sx={{ width: "100%" }}
-                      >
-                        Successfully removed from the list
-                      </Alert>
-                    </Snackbar>
                   </div>
                 ) : (
                   <div>
@@ -178,23 +158,6 @@ const Show = () => {
                       <FiPlus />
                       Add to List
                     </button>
-                    <Snackbar
-                      autoHideDuration={1000}
-                      anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "right",
-                      }}
-                      open={isSnackbarOpen}
-                      onClose={() => setIsSnackbarOpen(false)}
-                    >
-                      <Alert
-                        onClose={() => setIsSnackbarOpen(false)}
-                        severity="success"
-                        sx={{ width: "100%" }}
-                      >
-                        Successfully added to the list
-                      </Alert>
-                    </Snackbar>
                   </div>
                 )}
               </Box>
