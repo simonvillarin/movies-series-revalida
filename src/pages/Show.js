@@ -68,7 +68,7 @@ const Show = () => {
     } else {
       handleError();
     }
-  }, [id, event]);
+  }, [id]);
 
   const getStrValue = (array, propName) => {
     let strVal = "";
@@ -102,7 +102,7 @@ const Show = () => {
       addUserList(user.id, payload, token)
         .then((res) => console.log("Show added to list"))
         .catch((err) => handleError());
-      setEvent(!event);
+      window.location.reload();
       setIsSnackbarOpen(true);
     } else {
       handleError();
@@ -114,7 +114,7 @@ const Show = () => {
       removeUserList(id, token)
         .then((res) => console.log("Removed from list"))
         .catch((err) => handleError());
-      setEvent(!event);
+      window.location.reload();
       setIsSnackbarOpen(true);
     } else {
       handleError();

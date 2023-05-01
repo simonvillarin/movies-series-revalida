@@ -14,7 +14,7 @@ const Landing = () => {
         <Toolbar>
           <Container>
             <Box className="nav">
-              <img src={Logo} className="logo" />
+              <img src={Logo} className="logo" onClick={() => navigate("/")} />
               <Box className="landing-right-nav">
                 <div onClick={() => navigate("/signup")}>Sign Up</div>
                 <div>|</div>

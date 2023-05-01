@@ -40336,7 +40336,7 @@ Please use another name.` : formatMuiErrorMessage(18));
     }) : elem(DefaultContext);
   }
 
-  // node_modules/react-icons/Sl/index.esm.js
+  // node_modules/react-icons/sl/index.esm.js
   function SlClose(props) {
     return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 1024 1024" }, "child": [{ "tag": "path", "attr": { "d": "M512 0C229.232 0 0 229.232 0 512c0 282.784 229.232 512 512 512 282.784 0 512-229.216 512-512C1024 229.232 794.784 0 512 0zm0 961.008c-247.024 0-448-201.984-448-449.01 0-247.024 200.976-448 448-448s448 200.977 448 448-200.976 449.01-448 449.01zm181.008-630.016c-12.496-12.496-32.752-12.496-45.248 0L512 466.752l-135.76-135.76c-12.496-12.496-32.752-12.496-45.264 0-12.496 12.496-12.496 32.752 0 45.248L466.736 512l-135.76 135.76c-12.496 12.48-12.496 32.769 0 45.249 12.496 12.496 32.752 12.496 45.264 0L512 557.249l135.76 135.76c12.496 12.496 32.752 12.496 45.248 0 12.496-12.48 12.496-32.769 0-45.249L557.248 512l135.76-135.76c12.512-12.512 12.512-32.768 0-45.248z" } }] })(props);
   }
@@ -45918,7 +45918,7 @@ attempted value: ${formattedValue}
       username: create$6().required("Username is required!"),
       password: create$6().required("Password is required!")
     });
-    return /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "container" }, /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react29.default.createElement(
+    return /* @__PURE__ */ import_react29.default.createElement(import_react29.default.Fragment, null, /* @__PURE__ */ import_react29.default.createElement(AppBar_default, { elevation: 0 }, /* @__PURE__ */ import_react29.default.createElement(Toolbar_default, null, /* @__PURE__ */ import_react29.default.createElement(Container_default, null, /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "nav" }, /* @__PURE__ */ import_react29.default.createElement("img", { src: logo_default, className: "logo", onClick: () => navigate2("/") }))))), /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "container" }, /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react29.default.createElement(
       "svg",
       {
         "data-name": "Layer 1",
@@ -45956,7 +45956,14 @@ attempted value: ${formattedValue}
         validationSchema: signInSchema,
         onSubmit: handleSubmit
       },
-      /* @__PURE__ */ import_react29.default.createElement(Form2, { className: "form" }, /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react29.default.createElement(Typography_default, { variant: "body2" }, "Username "), /* @__PURE__ */ import_react29.default.createElement(Field, { className: "login-input", name: "username", type: "text" }), /* @__PURE__ */ import_react29.default.createElement(ErrorMessage, { name: "username" }, (msg) => /* @__PURE__ */ import_react29.default.createElement(Typography_default, { variant: "subtitle2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react29.default.createElement(Typography_default, { variant: "body2" }, "Password"), /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react29.default.createElement(
+      /* @__PURE__ */ import_react29.default.createElement(Form2, { className: "form" }, /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react29.default.createElement(Typography_default, { variant: "body2" }, "Username "), /* @__PURE__ */ import_react29.default.createElement(
+        Field,
+        {
+          className: "login-input",
+          name: "username",
+          type: "text"
+        }
+      ), /* @__PURE__ */ import_react29.default.createElement(ErrorMessage, { name: "username" }, (msg) => /* @__PURE__ */ import_react29.default.createElement(Typography_default, { variant: "subtitle2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react29.default.createElement(Typography_default, { variant: "body2" }, "Password"), /* @__PURE__ */ import_react29.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react29.default.createElement(
         Field,
         {
           className: "login-input",
@@ -45995,7 +46002,7 @@ attempted value: ${formattedValue}
         },
         "Invalid Credentials!"
       )
-    ))));
+    )))));
   };
   var LoginForm_default = LoginForm;
 
@@ -46029,7 +46036,7 @@ attempted value: ${formattedValue}
       password: create$6().min(6, "Must be atleast 6 characters!").max(60, "Cannot exceed 60 characters!").required("Password is required!"),
       confirmPassword: create$6().oneOf([create$9("password"), null], "Password does not match!").required("Confirm Password is required!")
     });
-    return /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "container signup-container" }, /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react30.default.createElement(
+    return /* @__PURE__ */ import_react30.default.createElement(import_react30.default.Fragment, null, /* @__PURE__ */ import_react30.default.createElement(AppBar_default, { elevation: 0 }, /* @__PURE__ */ import_react30.default.createElement(Toolbar_default, null, /* @__PURE__ */ import_react30.default.createElement(Container_default, null, /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "nav" }, /* @__PURE__ */ import_react30.default.createElement("img", { src: logo_default, className: "logo", onClick: () => navigate2("/") }))))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "container signup-container" }, /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react30.default.createElement(
       "svg",
       {
         "data-name": "Layer 1",
@@ -46067,7 +46074,28 @@ attempted value: ${formattedValue}
         validationSchema: signUpSchema,
         onSubmit: handleSubmit
       },
-      /* @__PURE__ */ import_react30.default.createElement(Form2, null, /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "First Name"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "firstName", type: "text" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "firstName" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Last Name"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "lastName", type: "text" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "lastName" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Email"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "email", type: "email" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "email" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Username"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "username", type: "text" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "username" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Password"), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react30.default.createElement(
+      /* @__PURE__ */ import_react30.default.createElement(Form2, null, /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "First Name"), /* @__PURE__ */ import_react30.default.createElement(
+        Field,
+        {
+          className: "login-input",
+          name: "firstName",
+          type: "text"
+        }
+      ), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "firstName" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Last Name"), /* @__PURE__ */ import_react30.default.createElement(
+        Field,
+        {
+          className: "login-input",
+          name: "lastName",
+          type: "text"
+        }
+      ), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "lastName" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Email"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "email", type: "email" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "email" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Username"), /* @__PURE__ */ import_react30.default.createElement(
+        Field,
+        {
+          className: "login-input",
+          name: "username",
+          type: "text"
+        }
+      ), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "username" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Password"), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react30.default.createElement(
         Field,
         {
           className: "login-input",
@@ -46081,7 +46109,12 @@ attempted value: ${formattedValue}
           name: "confirmPassword",
           type: showConfirmPassword ? "text" : "password"
         }
-      ), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "password-icons" }, showConfirmPassword ? /* @__PURE__ */ import_react30.default.createElement(FiEye, { onClick: () => setShowConfirmPassword(false) }) : /* @__PURE__ */ import_react30.default.createElement(
+      ), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "password-icons" }, showConfirmPassword ? /* @__PURE__ */ import_react30.default.createElement(
+        FiEye,
+        {
+          onClick: () => setShowConfirmPassword(false)
+        }
+      ) : /* @__PURE__ */ import_react30.default.createElement(
         FiEyeOff,
         {
           onClick: () => setShowConfirmPassword(true)
@@ -46110,7 +46143,7 @@ attempted value: ${formattedValue}
         },
         "Username already taken!"
       )
-    ))));
+    )))));
   };
   var SignUpForm_default = SignUpForm;
 
@@ -46282,7 +46315,7 @@ attempted value: ${formattedValue}
   // src/pages/Landing.js
   var Landing = () => {
     const navigate2 = useNavigate();
-    return /* @__PURE__ */ import_react33.default.createElement(import_react33.default.Fragment, null, /* @__PURE__ */ import_react33.default.createElement(AppBar_default, { position: "static", elevation: 0 }, /* @__PURE__ */ import_react33.default.createElement(Toolbar_default, null, /* @__PURE__ */ import_react33.default.createElement(Container_default, null, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "nav" }, /* @__PURE__ */ import_react33.default.createElement("img", { src: logo_default, className: "logo" }), /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "landing-right-nav" }, /* @__PURE__ */ import_react33.default.createElement("div", { onClick: () => navigate2("/signup") }, "Sign Up"), /* @__PURE__ */ import_react33.default.createElement("div", null, "|"), /* @__PURE__ */ import_react33.default.createElement("div", { onClick: () => navigate2("/login") }, "Login")))))), /* @__PURE__ */ import_react33.default.createElement("section", { className: "colored-section" }, /* @__PURE__ */ import_react33.default.createElement(Container_default, null, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "hero-container" }, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "hero-content" }, /* @__PURE__ */ import_react33.default.createElement("h2", null, "Find your next favorite flick with just a click!")), /* @__PURE__ */ import_react33.default.createElement("img", { src: landing_img_default, alt: "Hero Image", className: "landing-img" })))), /* @__PURE__ */ import_react33.default.createElement("section", { className: "featured" }, /* @__PURE__ */ import_react33.default.createElement(Container_default, null, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "featured-container" }, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "featured-content" }, /* @__PURE__ */ import_react33.default.createElement(FaSearch, { className: "featured-icon" }), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { className: "featured-text", variant: "h4" }, "Discover"), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { style: { color: "#8f8f8f" } }, "Discover your next favorite show with our website's vast collection.")), /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "featured-content" }, /* @__PURE__ */ import_react33.default.createElement(FaCalendarCheck, { className: "featured-icon" }), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { className: "featured-text", variant: "h4" }, "Updated"), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { style: { color: "#8f8f8f" } }, "Get the latest blockbuster hits and timeless classics, always up-to-date.")), /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "featured-content" }, /* @__PURE__ */ import_react33.default.createElement(FaListAlt, { className: "featured-icon" }), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { className: "featured-text", variant: "h4" }, "Favorites"), /* @__PURE__ */ import_react33.default.createElement(Box_default, null, /* @__PURE__ */ import_react33.default.createElement(Typography_default, { style: { color: "#8f8f8f" } }, "Never miss a movie again - easily keep tabs on all your favorite films by adding them to your list")))))));
+    return /* @__PURE__ */ import_react33.default.createElement(import_react33.default.Fragment, null, /* @__PURE__ */ import_react33.default.createElement(AppBar_default, { position: "static", elevation: 0 }, /* @__PURE__ */ import_react33.default.createElement(Toolbar_default, null, /* @__PURE__ */ import_react33.default.createElement(Container_default, null, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "nav" }, /* @__PURE__ */ import_react33.default.createElement("img", { src: logo_default, className: "logo", onClick: () => navigate2("/") }), /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "landing-right-nav" }, /* @__PURE__ */ import_react33.default.createElement("div", { onClick: () => navigate2("/signup") }, "Sign Up"), /* @__PURE__ */ import_react33.default.createElement("div", null, "|"), /* @__PURE__ */ import_react33.default.createElement("div", { onClick: () => navigate2("/login") }, "Login")))))), /* @__PURE__ */ import_react33.default.createElement("section", { className: "colored-section" }, /* @__PURE__ */ import_react33.default.createElement(Container_default, null, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "hero-container" }, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "hero-content" }, /* @__PURE__ */ import_react33.default.createElement("h2", null, "Find your next favorite flick with just a click!")), /* @__PURE__ */ import_react33.default.createElement("img", { src: landing_img_default, alt: "Hero Image", className: "landing-img" })))), /* @__PURE__ */ import_react33.default.createElement("section", { className: "featured" }, /* @__PURE__ */ import_react33.default.createElement(Container_default, null, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "featured-container" }, /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "featured-content" }, /* @__PURE__ */ import_react33.default.createElement(FaSearch, { className: "featured-icon" }), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { className: "featured-text", variant: "h4" }, "Discover"), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { style: { color: "#8f8f8f" } }, "Discover your next favorite show with our website's vast collection.")), /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "featured-content" }, /* @__PURE__ */ import_react33.default.createElement(FaCalendarCheck, { className: "featured-icon" }), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { className: "featured-text", variant: "h4" }, "Updated"), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { style: { color: "#8f8f8f" } }, "Get the latest blockbuster hits and timeless classics, always up-to-date.")), /* @__PURE__ */ import_react33.default.createElement(Box_default, { className: "featured-content" }, /* @__PURE__ */ import_react33.default.createElement(FaListAlt, { className: "featured-icon" }), /* @__PURE__ */ import_react33.default.createElement(Typography_default, { className: "featured-text", variant: "h4" }, "Favorites"), /* @__PURE__ */ import_react33.default.createElement(Box_default, null, /* @__PURE__ */ import_react33.default.createElement(Typography_default, { style: { color: "#8f8f8f" } }, "Never miss a movie again - easily keep tabs on all your favorite films by adding them to your list")))))));
   };
   var Landing_default = Landing;
 
@@ -46522,7 +46555,7 @@ attempted value: ${formattedValue}
       } else {
         handleError();
       }
-    }, [id, event]);
+    }, [id]);
     const getStrValue = (array2, propName) => {
       let strVal = "";
       for (let i = 0; i < array2.length; i++) {
@@ -46549,7 +46582,7 @@ attempted value: ${formattedValue}
           type
         };
         addUserList(user.id, payload, token2).then((res) => console.log("Show added to list")).catch((err) => handleError());
-        setEvent(!event);
+        window.location.reload();
         setIsSnackbarOpen(true);
       } else {
         handleError();
@@ -46558,7 +46591,7 @@ attempted value: ${formattedValue}
     const handleRemoveFromList = () => {
       if (token2 && user) {
         removeUserList(id, token2).then((res) => console.log("Removed from list")).catch((err) => handleError());
-        setEvent(!event);
+        window.location.reload();
         setIsSnackbarOpen(true);
       } else {
         handleError();
@@ -46936,7 +46969,7 @@ attempted value: ${formattedValue}
     const handleCloseError = () => {
       setIsError(false);
     };
-    return /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "container signup-container" }, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react43.default.createElement(
+    return /* @__PURE__ */ import_react43.default.createElement(import_react43.default.Fragment, null, /* @__PURE__ */ import_react43.default.createElement(AppBar_default, { elevation: 0 }, /* @__PURE__ */ import_react43.default.createElement(Toolbar_default, null, /* @__PURE__ */ import_react43.default.createElement(Container_default, null, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "nav" }, /* @__PURE__ */ import_react43.default.createElement("img", { src: logo_default, className: "logo", onClick: () => navigate2("/") }), /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "landing-right-nav" }, /* @__PURE__ */ import_react43.default.createElement("div", { onClick: () => navigate2("/signup") }, "Sign Up"), /* @__PURE__ */ import_react43.default.createElement("div", null, "|"), /* @__PURE__ */ import_react43.default.createElement("div", { onClick: () => navigate2("/login") }, "Login")))))), /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "container signup-container" }, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react43.default.createElement(
       "svg",
       {
         "data-name": "Layer 1",
@@ -46974,7 +47007,14 @@ attempted value: ${formattedValue}
         onSubmit: sendEmail,
         validationSchema: sendEmailSchema
       },
-      /* @__PURE__ */ import_react43.default.createElement(Form2, null, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "body2" }, "Email"), /* @__PURE__ */ import_react43.default.createElement(Field, { className: "login-input", name: "to_email", type: "text" }), /* @__PURE__ */ import_react43.default.createElement(ErrorMessage, { name: "to_email" }, (msg) => /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react43.default.createElement(
+      /* @__PURE__ */ import_react43.default.createElement(Form2, null, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "body2" }, "Email"), /* @__PURE__ */ import_react43.default.createElement(
+        Field,
+        {
+          className: "login-input",
+          name: "to_email",
+          type: "text"
+        }
+      ), /* @__PURE__ */ import_react43.default.createElement(ErrorMessage, { name: "to_email" }, (msg) => /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react43.default.createElement(
         "button",
         {
           type: "submit",
@@ -47023,7 +47063,7 @@ attempted value: ${formattedValue}
           "Email does not exist in our database"
         )
       )))
-    )))));
+    ))))));
   };
   var SendEmail_default = SendEmail;
 
@@ -47079,7 +47119,7 @@ attempted value: ${formattedValue}
         navigate2("/reset-password");
       }
     };
-    return /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "container signup-container" }, /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react44.default.createElement(
+    return /* @__PURE__ */ import_react44.default.createElement(import_react44.default.Fragment, null, /* @__PURE__ */ import_react44.default.createElement(AppBar_default, { elevation: 0 }, /* @__PURE__ */ import_react44.default.createElement(Toolbar_default, null, /* @__PURE__ */ import_react44.default.createElement(Container_default, null, /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "nav" }, /* @__PURE__ */ import_react44.default.createElement("img", { src: logo_default, className: "logo", onClick: () => navigate2("/") }), /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "landing-right-nav" }, /* @__PURE__ */ import_react44.default.createElement("div", { onClick: () => navigate2("/signup") }, "Sign Up"), /* @__PURE__ */ import_react44.default.createElement("div", null, "|"), /* @__PURE__ */ import_react44.default.createElement("div", { onClick: () => navigate2("/login") }, "Login")))))), /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "container signup-container" }, /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react44.default.createElement(
       "svg",
       {
         "data-name": "Layer 1",
@@ -47146,7 +47186,7 @@ attempted value: ${formattedValue}
           message
         )
       )))
-    )))));
+    ))))));
   };
   var InputOtp_default = InputOtp;
 
@@ -47190,7 +47230,7 @@ attempted value: ${formattedValue}
       setAlert(false);
       navigate2("/login");
     };
-    return /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "container signup-container" }, /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react45.default.createElement(
+    return /* @__PURE__ */ import_react45.default.createElement(import_react45.default.Fragment, null, /* @__PURE__ */ import_react45.default.createElement(AppBar_default, { elevation: 0 }, /* @__PURE__ */ import_react45.default.createElement(Toolbar_default, null, /* @__PURE__ */ import_react45.default.createElement(Container_default, null, /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "nav" }, /* @__PURE__ */ import_react45.default.createElement("img", { src: logo_default, className: "logo", onClick: () => navigate2("/") }), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "landing-right-nav" }, /* @__PURE__ */ import_react45.default.createElement("div", { onClick: () => navigate2("/signup") }, "Sign Up"), /* @__PURE__ */ import_react45.default.createElement("div", null, "|"), /* @__PURE__ */ import_react45.default.createElement("div", { onClick: () => navigate2("/login") }, "Login")))))), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "container signup-container" }, /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react45.default.createElement(
       "svg",
       {
         "data-name": "Layer 1",
@@ -47242,7 +47282,12 @@ attempted value: ${formattedValue}
           name: "confirmPassword",
           type: showConfirmPassword ? "text" : "password"
         }
-      ), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "password-icons" }, showConfirmPassword ? /* @__PURE__ */ import_react45.default.createElement(FiEye, { onClick: () => setShowConfirmPassword(false) }) : /* @__PURE__ */ import_react45.default.createElement(
+      ), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "password-icons" }, showConfirmPassword ? /* @__PURE__ */ import_react45.default.createElement(
+        FiEye,
+        {
+          onClick: () => setShowConfirmPassword(false)
+        }
+      ) : /* @__PURE__ */ import_react45.default.createElement(
         FiEyeOff,
         {
           onClick: () => setShowConfirmPassword(true)
@@ -47268,7 +47313,7 @@ attempted value: ${formattedValue}
           "Password Updated"
         )
       ))
-    )))));
+    ))))));
   };
   var ResetPassword_default = ResetPassword;
 
