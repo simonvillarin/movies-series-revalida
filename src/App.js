@@ -29,12 +29,12 @@ import { EmailContextProvider } from "./context/EmailContext.js";
 const App = () => {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(UserContext);
   let user = localStorage.getItem("user");
+  let otp = localStorage.getItem("otp");
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
       setIsUserLoggedIn(true);
-      navigate("/home");
     } else {
       setIsUserLoggedIn(false);
       destroySession();
@@ -42,13 +42,18 @@ const App = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (!otp && !user) {
+      navigate("/login");
+    }
+  }, [otp]);
+
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
         <AppbarContextProvider>
           <SearchContextProvider>
             <EmailContextProvider>
-              {" "}
               {isUserLoggedIn ? (
                 <React.Fragment>
                   <Routes>
@@ -77,6 +82,7 @@ const App = () => {
                   <Route path="/send-otp" element={<SendEmail />} />
                   <Route path="/type-otp" element={<InputOtp />} />
                   <Route path="/reset-password" element={<ResetPassword />} />
+                  <Route path="*" element={<ErrorPage />} />
                 </Routes>
               )}
             </EmailContextProvider>

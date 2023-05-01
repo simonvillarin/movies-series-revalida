@@ -8,7 +8,6 @@ const ErrorPage = () => {
   return (
     <React.Fragment>
       <Container>
-        <Appbar />
         <div className="error-container">
           <img className="error-img" src={ErrorImg} alt="error404" />
           <Typography variant="h5" fontWeight="bold">
@@ -23,7 +22,6 @@ const ErrorPage = () => {
           </button>
         </div>
       </Container>
-      <Footer />
     </React.Fragment>
   );
 };

@@ -19,6 +19,7 @@ import {
 } from "../services/UserService";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { FiEye, FiEyeOff } from "react-icons/Fi";
 import ProfileAvatar from "../../public/assets/images/user.png";
 import Appbar from "../components/Appbar";
 import Footer from "../components/Footer";
@@ -27,8 +28,10 @@ import * as yup from "yup";
 const Profile = () => {
   const [edit, setEdit] = useState(false);
   const { setIsUserLoggedIn } = useContext(UserContext);
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isUpdated, setIsUpdated] = useState(false);
+  const navigate = useNavigate();
 
   let token = getToken();
   let user = getCurrentUser();
@@ -36,8 +39,8 @@ const Profile = () => {
   let initVal = {
     firstName: user.firstName,
     lastName: user.lastName,
-    password: user.password.substring(0, 10),
-    confirmPassword: user.password.substring(0, 10),
+    password: "",
+    confirmPassword: "",
   };
 
   const handleError = () => {
@@ -51,56 +54,31 @@ const Profile = () => {
       if (
         user.firstName != values.firstName ||
         user.lastName != values.lastName ||
-        user.password.substring(0, 10) != values.password
+        values.password != ""
       ) {
         let payload = {};
 
-        if (
-          user.firstName != values.firstName &&
-          user.lastName != values.lastName &&
-          user.password.substring(0, 10) != values.password
-        ) {
+        if (values.password == "") {
+          payload = { firstName: values.firstName, lastName: values.lastName };
+        } else {
           payload = {
             firstName: values.firstName,
             lastName: values.lastName,
             password: values.password,
           };
-        } else if (
-          user.firstName != values.firstName &&
-          user.lastName != values.lastName
-        ) {
-          payload = { firstName: values.firstName, lastName: values.lastName };
-        } else if (
-          user.firstName != values.firstName &&
-          user.password.substring(0, 10) != values.password
-        ) {
-          payload = { firstName: values.firstName, password: values.password };
-        } else if (
-          user.lastName != values.lastName &&
-          user.password.substring(0, 10) != values.password
-        ) {
-          payload = { lastName: values.lastName, password: values.password };
-        } else if (user.firstName != values.firstName) {
-          payload = { firstName: values.firstName };
-        } else if (user.lastName != values.lastName) {
-          payload = { lastName: values.lastName };
-        } else if (user.password.substring(0, 10) != values.password) {
-          payload = { password: values.password };
         }
 
         updateUser(user.id, payload, token)
           .then((res) => {
             getUserById(user.id, token)
               .then((res1) => {
-                let user1 = {
+                let localUser = {
                   id: res1.data.id,
                   firstName: res1.data.firstName,
                   lastName: res1.data.lastName,
                   username: res1.data.username,
-                  password: res1.data.password,
                 };
-                console.log(user1);
-                localStorage.setItem("user", JSON.stringify(user1));
+                localStorage.setItem("user", JSON.stringify(localUser));
                 window.location.reload();
               })
               .catch((err) => handleError());
@@ -127,12 +105,10 @@ const Profile = () => {
     password: yup
       .string()
       .min(6, "Must be atleast 6 characters!")
-      .max(60, "Cannot exceed 60 characters!")
-      .required("Password is required!"),
+      .max(60, "Cannot exceed 60 characters!"),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref("password"), null], "Password does not match!")
-      .required("Confirm Password is required!"),
+      .oneOf([yup.ref("password"), null], "Password does not match!"),
   });
 
   return (
@@ -228,9 +204,22 @@ const Profile = () => {
                         <Field
                           className={`login-input  ${edit && "border-active"}`}
                           name="password"
-                          type="password"
+                          type={`${showPassword ? "text" : "password"}`}
                           disabled={edit ? `` : true}
                         />
+                        <Box className="password-icons">
+                          {showPassword ? (
+                            <FiEye
+                              onClick={() => setShowPassword(false)}
+                              className={`${edit && "edit-active"}`}
+                            />
+                          ) : (
+                            <FiEyeOff
+                              onClick={() => setShowPassword(true)}
+                              className={`${edit && "edit-active"}`}
+                            />
+                          )}
+                        </Box>
                       </Box>
                       <ErrorMessage name="password">
                         {(msg) => (
@@ -246,9 +235,22 @@ const Profile = () => {
                         <Field
                           className={`login-input  ${edit && "border-active"}`}
                           name="confirmPassword"
-                          type="password"
+                          type={`${showConfirmPassword ? "text" : "password"}`}
                           disabled={edit ? `` : true}
                         />
+                        <Box className="password-icons">
+                          {showConfirmPassword ? (
+                            <FiEye
+                              onClick={() => setShowConfirmPassword(false)}
+                              className={`${edit && "edit-active"}`}
+                            />
+                          ) : (
+                            <FiEyeOff
+                              onClick={() => setShowConfirmPassword(true)}
+                              className={`${edit && "edit-active"}`}
+                            />
+                          )}
+                        </Box>
                       </Box>
                       <ErrorMessage name="confirmPassword">
                         {(msg) => (

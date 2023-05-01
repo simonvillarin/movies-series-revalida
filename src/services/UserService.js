@@ -16,6 +16,10 @@ export const login = async (user) => {
   return await axios.post(`${API_BASE_URL}/auth/login`, user);
 };
 
+export const getAllUsers = async () => {
+  return await axios.get(`${API_BASE_URL}/auth/users`);
+};
+
 export const getUserId = async () => {
   return await axios.get(`${API_BASE_URL}/auth/id`);
 };

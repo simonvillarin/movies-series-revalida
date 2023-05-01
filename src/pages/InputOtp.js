@@ -28,7 +28,7 @@ const InputOtp = () => {
 
   const sendOTP = (values) => {
     const otpValues = Object.values(values).join("");
-    if (otpValues == storedOtp) {
+    if (otpValues == JSON.parse(storedOtp).otp) {
       setAlert({
         ...alert,
         isOpen: true,
@@ -179,7 +179,11 @@ const InputOtp = () => {
                       </Typography>
                     )}
                   </ErrorMessage>
-                  <button type="submit" className="login-btn">
+                  <button
+                    type="submit"
+                    className="login-btn"
+                    style={{ marginTop: "1rem" }}
+                  >
                     Submit
                   </button>
                   <Snackbar

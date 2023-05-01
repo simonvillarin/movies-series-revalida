@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiEye, FiEyeOff } from "react-icons/Fi";
 import { Box, Typography, Paper, Alert, Snackbar } from "@mui/material";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import {
-  updatePassword,
-  getToken,
-  getCurrentUser,
-} from "../services/UserService";
+import { updatePassword } from "../services/UserService";
+import { getAllUsers } from "../services/UserService";
 
 const ResetPassword = () => {
+  const [users, setUsers] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [alert, setAlert] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getAllUsers()
+      .then((res) => setUsers(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   let initVal = {
     password: "",
@@ -35,13 +39,24 @@ const ResetPassword = () => {
   });
 
   const resetPass = (values) => {
-    updatePassword(1, values)
-      .then(() => {
-        setAlert(true);
-      })
-      .catch(() => {
-        navigate("/login");
-      });
+    let otp = localStorage.getItem("otp");
+
+    if (otp) {
+      let findUser = users.find((user) => user.id == JSON.parse(otp).id);
+      if (findUser) {
+        updatePassword(findUser.id, values)
+          .then(() => {
+            setAlert(true);
+          })
+          .catch(() => {
+            navigate("/login");
+          });
+      }
+      localStorage.removeItem("otp");
+    } else {
+      localStorage.removeItem("otp");
+      navigate("/login");
+    }
   };
 
   const handleClose = () => {
@@ -101,14 +116,14 @@ const ResetPassword = () => {
                         <FiEyeOff onClick={() => setShowPassword(true)} />
                       )}
                     </Box>
-                    <ErrorMessage name="password">
-                      {(msg) => (
-                        <Typography variant="body2" sx={{ color: "red" }}>
-                          {msg}
-                        </Typography>
-                      )}
-                    </ErrorMessage>
                   </Box>
+                  <ErrorMessage name="password">
+                    {(msg) => (
+                      <Typography variant="body2" sx={{ color: "red" }}>
+                        {msg}
+                      </Typography>
+                    )}
+                  </ErrorMessage>
                 </Box>
                 <Box className="form-group">
                   <Typography variant="body2">Confirm Password</Typography>
@@ -127,14 +142,14 @@ const ResetPassword = () => {
                         />
                       )}
                     </Box>
-                    <ErrorMessage name="confirmPassword">
-                      {(msg) => (
-                        <Typography variant="body2" sx={{ color: "red" }}>
-                          {msg}
-                        </Typography>
-                      )}
-                    </ErrorMessage>
                   </Box>
+                  <ErrorMessage name="confirmPassword">
+                    {(msg) => (
+                      <Typography variant="body2" sx={{ color: "red" }}>
+                        {msg}
+                      </Typography>
+                    )}
+                  </ErrorMessage>
                 </Box>
                 <button type="submit" className="register-btn">
                   Reset Password

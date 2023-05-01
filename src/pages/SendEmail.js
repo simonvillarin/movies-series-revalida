@@ -3,13 +3,16 @@ import emailjs from "@emailjs/browser";
 import { Box, Typography, Paper, Alert, Snackbar } from "@mui/material";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
 import { EmailContext } from "../context/EmailContext";
+import { getAllUsers } from "../services/UserService";
+import * as yup from "yup";
 
 const SendEmail = () => {
   const navigate = useNavigate();
   const { setEmailContext } = useContext(EmailContext);
+  const [users, setUsers] = useState([]);
   const [isSent, setIsSent] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const [emailDetails, setEmailDetails] = useState({
     to_name: "77 Movie User",
@@ -18,33 +21,45 @@ const SendEmail = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem("otp", emailDetails.otp);
-  }, [emailDetails.otp]);
+    getAllUsers()
+      .then((res) => setUsers(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   let initVal = {
     to_email: "",
   };
 
   const sendEmail = (values) => {
-    emailDetails.to_email = values.to_email;
-    setEmailContext(values.to_email);
-    emailjs
-      .send(
-        "service_bgfpb19",
-        "template_9t1dcjn",
-        emailDetails,
-        "IKV-P9TmX79QWtFxH"
-      )
-      .then(
-        (result) => {
-          setIsSent(true);
+    let findUser = users.find((user) => user.email == values.to_email);
 
-          //alert("An OTP has been sent to your email");
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    if (findUser) {
+      emailDetails.to_email = values.to_email;
+      setEmailContext(values.to_email);
+      emailjs
+        .send(
+          "service_bgfpb19",
+          "template_9t1dcjn",
+          emailDetails,
+          "IKV-P9TmX79QWtFxH"
+        )
+        .then(
+          (result) => {
+            setIsSent(true);
+            let otp = {
+              otp: emailDetails.otp,
+              id: findUser.id,
+            };
+
+            localStorage.setItem("otp", JSON.stringify(otp));
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    } else {
+      setIsError(true);
+    }
   };
 
   const sendEmailSchema = yup.object().shape({
@@ -58,6 +73,11 @@ const SendEmail = () => {
     setIsSent(false);
     navigate("/type-otp");
   };
+
+  const handleCloseError = () => {
+    setIsError(false);
+  };
+
   return (
     <Box className="container signup-container">
       <Box className="custom-shape-divider-top">
@@ -87,7 +107,7 @@ const SendEmail = () => {
       <Paper elevation={5}>
         <Box className="sign-up-container">
           <Typography variant="h5" sx={{ mb: 2 }}>
-            Forgot Password
+            Send OTP
           </Typography>
           <Box>
             <Formik
@@ -106,7 +126,11 @@ const SendEmail = () => {
                       </Typography>
                     )}
                   </ErrorMessage>
-                  <button type="submit" className="login-btn">
+                  <button
+                    type="submit"
+                    className="login-btn"
+                    style={{ marginTop: "0.5rem" }}
+                  >
                     Send OTP
                   </button>
                   <Snackbar
@@ -124,6 +148,23 @@ const SendEmail = () => {
                       sx={{ width: "100%" }}
                     >
                       An OTP has been sent to your email
+                    </Alert>
+                  </Snackbar>
+                  <Snackbar
+                    autoHideDuration={2000}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "center",
+                    }}
+                    open={isError}
+                    onClose={handleCloseError}
+                  >
+                    <Alert
+                      onClose={handleCloseError}
+                      severity="success"
+                      sx={{ width: "100%" }}
+                    >
+                      Email does not exist in our database
                     </Alert>
                   </Snackbar>
                 </Box>

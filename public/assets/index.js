@@ -1096,7 +1096,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect25(create, deps) {
+          function useEffect26(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1878,7 +1878,7 @@
           exports2.useContext = useContext25;
           exports2.useDebugValue = useDebugValue4;
           exports2.useDeferredValue = useDeferredValue;
-          exports2.useEffect = useEffect25;
+          exports2.useEffect = useEffect26;
           exports2.useId = useId;
           exports2.useImperativeHandle = useImperativeHandle4;
           exports2.useInsertionEffect = useInsertionEffect3;
@@ -45818,6 +45818,9 @@ attempted value: ${formattedValue}
   var login = async (user) => {
     return await axios_default.post(`${API_BASE_URL}/auth/login`, user);
   };
+  var getAllUsers = async () => {
+    return await axios_default.get(`${API_BASE_URL}/auth/users`);
+  };
   var getUserId = async () => {
     return await axios_default.get(`${API_BASE_URL}/auth/id`);
   };
@@ -45894,8 +45897,7 @@ attempted value: ${formattedValue}
               id: res3.data.id,
               firstName: res3.data.firstName,
               lastName: res3.data.lastName,
-              username: res3.data.username,
-              password: res3.data.password
+              username: res3.data.username
             };
             createSession(res1.data.token, user);
             setIsUserLoggedIn(true);
@@ -46005,7 +46007,7 @@ attempted value: ${formattedValue}
     const navigate2 = useNavigate();
     const [hasError, setHasError] = (0, import_react30.useState)(false);
     const handleSubmit = (values3, { resetForm }) => {
-      register(values3).then((res) => console.log("User registered successfully!")).catch((err) => {
+      register(values3).then((res) => navigate2("/login")).catch((err) => {
         console.log(err);
         setHasError(true);
       });
@@ -46014,6 +46016,7 @@ attempted value: ${formattedValue}
     let initVal = {
       firstName: "",
       lastName: "",
+      email: "",
       username: "",
       password: "",
       confirmPassword: ""
@@ -46022,6 +46025,7 @@ attempted value: ${formattedValue}
       firstName: create$6().min(2, "Must have atleast 2 characters!").max(60, "First name is too long!").required("First name is required!"),
       lastName: create$6().min(2, "Must have atleast 2 characters!").max(60, "Last name is too long!").required("Last name is required!"),
       username: create$6().min(6, "Username is too short").max(60, "Username is too long!").required("Username is required!"),
+      email: create$6().email("Invalid email!").required("Email is required!"),
       password: create$6().min(6, "Must be atleast 6 characters!").max(60, "Cannot exceed 60 characters!").required("Password is required!"),
       confirmPassword: create$6().oneOf([create$9("password"), null], "Password does not match!").required("Confirm Password is required!")
     });
@@ -46063,7 +46067,7 @@ attempted value: ${formattedValue}
         validationSchema: signUpSchema,
         onSubmit: handleSubmit
       },
-      /* @__PURE__ */ import_react30.default.createElement(Form2, null, /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "First Name"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "firstName", type: "text" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "firstName" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Last Name"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "lastName", type: "text" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "lastName" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Username"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "username", type: "text" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "username" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Password"), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react30.default.createElement(
+      /* @__PURE__ */ import_react30.default.createElement(Form2, null, /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "First Name"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "firstName", type: "text" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "firstName" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Last Name"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "lastName", type: "text" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "lastName" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Email"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "email", type: "email" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "email" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Username"), /* @__PURE__ */ import_react30.default.createElement(Field, { className: "login-input", name: "username", type: "text" }), /* @__PURE__ */ import_react30.default.createElement(ErrorMessage, { name: "username" }, (msg) => /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react30.default.createElement(Typography_default, { variant: "body2" }, "Password"), /* @__PURE__ */ import_react30.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react30.default.createElement(
         Field,
         {
           className: "login-input",
@@ -46292,15 +46296,17 @@ attempted value: ${formattedValue}
   var Profile = () => {
     const [edit, setEdit] = (0, import_react34.useState)(false);
     const { setIsUserLoggedIn } = (0, import_react34.useContext)(UserContext);
-    const navigate2 = useNavigate();
+    const [showPassword, setShowPassword] = (0, import_react34.useState)(false);
+    const [showConfirmPassword, setShowConfirmPassword] = (0, import_react34.useState)(false);
     const [isUpdated, setIsUpdated] = (0, import_react34.useState)(false);
+    const navigate2 = useNavigate();
     let token2 = getToken();
     let user = getCurrentUser();
     let initVal = {
       firstName: user.firstName,
       lastName: user.lastName,
-      password: user.password.substring(0, 10),
-      confirmPassword: user.password.substring(0, 10)
+      password: "",
+      confirmPassword: ""
     };
     const handleError = () => {
       destroySession();
@@ -46309,38 +46315,26 @@ attempted value: ${formattedValue}
     };
     const update = (values3, { resetForm }) => {
       if (token2 && user) {
-        if (user.firstName != values3.firstName || user.lastName != values3.lastName || user.password.substring(0, 10) != values3.password) {
+        if (user.firstName != values3.firstName || user.lastName != values3.lastName || values3.password != "") {
           let payload = {};
-          if (user.firstName != values3.firstName && user.lastName != values3.lastName && user.password.substring(0, 10) != values3.password) {
+          if (values3.password == "") {
+            payload = { firstName: values3.firstName, lastName: values3.lastName };
+          } else {
             payload = {
               firstName: values3.firstName,
               lastName: values3.lastName,
               password: values3.password
             };
-          } else if (user.firstName != values3.firstName && user.lastName != values3.lastName) {
-            payload = { firstName: values3.firstName, lastName: values3.lastName };
-          } else if (user.firstName != values3.firstName && user.password.substring(0, 10) != values3.password) {
-            payload = { firstName: values3.firstName, password: values3.password };
-          } else if (user.lastName != values3.lastName && user.password.substring(0, 10) != values3.password) {
-            payload = { lastName: values3.lastName, password: values3.password };
-          } else if (user.firstName != values3.firstName) {
-            payload = { firstName: values3.firstName };
-          } else if (user.lastName != values3.lastName) {
-            payload = { lastName: values3.lastName };
-          } else if (user.password.substring(0, 10) != values3.password) {
-            payload = { password: values3.password };
           }
           updateUser(user.id, payload, token2).then((res) => {
             getUserById(user.id, token2).then((res1) => {
-              let user1 = {
+              let localUser = {
                 id: res1.data.id,
                 firstName: res1.data.firstName,
                 lastName: res1.data.lastName,
-                username: res1.data.username,
-                password: res1.data.password
+                username: res1.data.username
               };
-              console.log(user1);
-              localStorage.setItem("user", JSON.stringify(user1));
+              localStorage.setItem("user", JSON.stringify(localUser));
               window.location.reload();
             }).catch((err) => handleError());
           }).catch((err) => handleError());
@@ -46353,8 +46347,8 @@ attempted value: ${formattedValue}
     const updateSchema = create$3().shape({
       firstName: create$6().min(2, "Must have atleast 2 characters!").max(60, "First name is too long!").required("First name is required!"),
       lastName: create$6().min(2, "Must have atleast 2 characters!").max(60, "Last name is too long!").required("Last name is required!"),
-      password: create$6().min(6, "Must be atleast 6 characters!").max(60, "Cannot exceed 60 characters!").required("Password is required!"),
-      confirmPassword: create$6().oneOf([create$9("password"), null], "Password does not match!").required("Confirm Password is required!")
+      password: create$6().min(6, "Must be atleast 6 characters!").max(60, "Cannot exceed 60 characters!"),
+      confirmPassword: create$6().oneOf([create$9("password"), null], "Password does not match!")
     });
     return /* @__PURE__ */ import_react34.default.createElement(import_react34.default.Fragment, null, /* @__PURE__ */ import_react34.default.createElement(Appbar_default, null), /* @__PURE__ */ import_react34.default.createElement(Container_default, null, /* @__PURE__ */ import_react34.default.createElement("div", { className: "profile-container" }, /* @__PURE__ */ import_react34.default.createElement("div", { className: "left-profile-container" }, /* @__PURE__ */ import_react34.default.createElement(Paper_default, null, /* @__PURE__ */ import_react34.default.createElement("div", null, /* @__PURE__ */ import_react34.default.createElement(
       "img",
@@ -46409,18 +46403,42 @@ attempted value: ${formattedValue}
         {
           className: `login-input  ${edit && "border-active"}`,
           name: "password",
-          type: "password",
+          type: `${showPassword ? "text" : "password"}`,
           disabled: edit ? `` : true
         }
-      )), /* @__PURE__ */ import_react34.default.createElement(ErrorMessage, { name: "password" }, (msg) => /* @__PURE__ */ import_react34.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react34.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react34.default.createElement(Typography_default, { variant: "body2" }, "Confirm Password"), /* @__PURE__ */ import_react34.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react34.default.createElement(
+      ), /* @__PURE__ */ import_react34.default.createElement(Box_default, { className: "password-icons" }, showPassword ? /* @__PURE__ */ import_react34.default.createElement(
+        FiEye,
+        {
+          onClick: () => setShowPassword(false),
+          className: `${edit && "edit-active"}`
+        }
+      ) : /* @__PURE__ */ import_react34.default.createElement(
+        FiEyeOff,
+        {
+          onClick: () => setShowPassword(true),
+          className: `${edit && "edit-active"}`
+        }
+      ))), /* @__PURE__ */ import_react34.default.createElement(ErrorMessage, { name: "password" }, (msg) => /* @__PURE__ */ import_react34.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react34.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react34.default.createElement(Typography_default, { variant: "body2" }, "Confirm Password"), /* @__PURE__ */ import_react34.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react34.default.createElement(
         Field,
         {
           className: `login-input  ${edit && "border-active"}`,
           name: "confirmPassword",
-          type: "password",
+          type: `${showConfirmPassword ? "text" : "password"}`,
           disabled: edit ? `` : true
         }
-      )), /* @__PURE__ */ import_react34.default.createElement(ErrorMessage, { name: "confirmPassword" }, (msg) => /* @__PURE__ */ import_react34.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)))), /* @__PURE__ */ import_react34.default.createElement(
+      ), /* @__PURE__ */ import_react34.default.createElement(Box_default, { className: "password-icons" }, showConfirmPassword ? /* @__PURE__ */ import_react34.default.createElement(
+        FiEye,
+        {
+          onClick: () => setShowConfirmPassword(false),
+          className: `${edit && "edit-active"}`
+        }
+      ) : /* @__PURE__ */ import_react34.default.createElement(
+        FiEyeOff,
+        {
+          onClick: () => setShowConfirmPassword(true),
+          className: `${edit && "edit-active"}`
+        }
+      ))), /* @__PURE__ */ import_react34.default.createElement(ErrorMessage, { name: "confirmPassword" }, (msg) => /* @__PURE__ */ import_react34.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)))), /* @__PURE__ */ import_react34.default.createElement(
         "button",
         {
           type: "submit",
@@ -46482,6 +46500,7 @@ attempted value: ${formattedValue}
       production_companies = []
     } = show;
     const { setIsUserLoggedIn } = (0, import_react36.useContext)(UserContext);
+    const [event, setEvent] = (0, import_react35.useState)(false);
     const navigate2 = useNavigate();
     let token2 = getToken();
     let user = getCurrentUser();
@@ -46503,7 +46522,7 @@ attempted value: ${formattedValue}
       } else {
         handleError();
       }
-    }, [id]);
+    }, [id, event]);
     const getStrValue = (array2, propName) => {
       let strVal = "";
       for (let i = 0; i < array2.length; i++) {
@@ -46530,18 +46549,20 @@ attempted value: ${formattedValue}
           type
         };
         addUserList(user.id, payload, token2).then((res) => console.log("Show added to list")).catch((err) => handleError());
+        setEvent(!event);
+        setIsSnackbarOpen(true);
       } else {
         handleError();
       }
-      setIsSnackbarOpen(true);
     };
     const handleRemoveFromList = () => {
       if (token2 && user) {
         removeUserList(id, token2).then((res) => console.log("Removed from list")).catch((err) => handleError());
+        setEvent(!event);
+        setIsSnackbarOpen(true);
       } else {
         handleError();
       }
-      setIsSnackbarOpen(true);
     };
     const [isSnackbarOpen, setIsSnackbarOpen] = (0, import_react35.useState)(false);
     return /* @__PURE__ */ import_react35.default.createElement(import_react35.default.Fragment, null, /* @__PURE__ */ import_react35.default.createElement(Appbar_default, null), /* @__PURE__ */ import_react35.default.createElement("div", { className: "show-container" }, /* @__PURE__ */ import_react35.default.createElement(
@@ -46741,7 +46762,7 @@ attempted value: ${formattedValue}
 
   // src/pages/ErrorPage.js
   var ErrorPage = () => {
-    return /* @__PURE__ */ import_react41.default.createElement(import_react41.default.Fragment, null, /* @__PURE__ */ import_react41.default.createElement(Container_default, null, /* @__PURE__ */ import_react41.default.createElement(Appbar_default, null), /* @__PURE__ */ import_react41.default.createElement("div", { className: "error-container" }, /* @__PURE__ */ import_react41.default.createElement("img", { className: "error-img", src: error_default, alt: "error404" }), /* @__PURE__ */ import_react41.default.createElement(Typography_default, { variant: "h5", fontWeight: "bold" }, "Oopsie! Something went wrong..."), /* @__PURE__ */ import_react41.default.createElement(Typography_default, { paragraph: true, sx: { mt: 1, mb: "1.5rem" } }, "The page you were looking for doesn't exist, isn't available or was loading incorrectly."), /* @__PURE__ */ import_react41.default.createElement("button", { className: "error-btn", onClick: () => window.history.back() }, "Go Back"))), /* @__PURE__ */ import_react41.default.createElement(Footer_default, null));
+    return /* @__PURE__ */ import_react41.default.createElement(import_react41.default.Fragment, null, /* @__PURE__ */ import_react41.default.createElement(Container_default, null, /* @__PURE__ */ import_react41.default.createElement("div", { className: "error-container" }, /* @__PURE__ */ import_react41.default.createElement("img", { className: "error-img", src: error_default, alt: "error404" }), /* @__PURE__ */ import_react41.default.createElement(Typography_default, { variant: "h5", fontWeight: "bold" }, "Oopsie! Something went wrong..."), /* @__PURE__ */ import_react41.default.createElement(Typography_default, { paragraph: true, sx: { mt: 1, mb: "1.5rem" } }, "The page you were looking for doesn't exist, isn't available or was loading incorrectly."), /* @__PURE__ */ import_react41.default.createElement("button", { className: "error-btn", onClick: () => window.history.back() }, "Go Back"))));
   };
   var ErrorPage_default = ErrorPage;
 
@@ -46864,34 +46885,46 @@ attempted value: ${formattedValue}
   var SendEmail = () => {
     const navigate2 = useNavigate();
     const { setEmailContext } = (0, import_react43.useContext)(EmailContext);
+    const [users, setUsers] = (0, import_react43.useState)([]);
     const [isSent, setIsSent] = (0, import_react43.useState)(false);
+    const [isError, setIsError] = (0, import_react43.useState)(false);
     const [emailDetails, setEmailDetails] = (0, import_react43.useState)({
       to_name: "77 Movie User",
       otp: Math.floor(Math.random() * 9e5 + 1e5),
       to_email: ""
     });
     (0, import_react43.useEffect)(() => {
-      localStorage.setItem("otp", emailDetails.otp);
-    }, [emailDetails.otp]);
+      getAllUsers().then((res) => setUsers(res.data)).catch((err) => console.log(err));
+    }, []);
     let initVal = {
       to_email: ""
     };
     const sendEmail = (values3) => {
-      emailDetails.to_email = values3.to_email;
-      setEmailContext(values3.to_email);
-      es_default2.send(
-        "service_bgfpb19",
-        "template_9t1dcjn",
-        emailDetails,
-        "IKV-P9TmX79QWtFxH"
-      ).then(
-        (result) => {
-          setIsSent(true);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+      let findUser = users.find((user) => user.email == values3.to_email);
+      if (findUser) {
+        emailDetails.to_email = values3.to_email;
+        setEmailContext(values3.to_email);
+        es_default2.send(
+          "service_bgfpb19",
+          "template_9t1dcjn",
+          emailDetails,
+          "IKV-P9TmX79QWtFxH"
+        ).then(
+          (result) => {
+            setIsSent(true);
+            let otp = {
+              otp: emailDetails.otp,
+              id: findUser.id
+            };
+            localStorage.setItem("otp", JSON.stringify(otp));
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+      } else {
+        setIsError(true);
+      }
     };
     const sendEmailSchema = create$3().shape({
       to_email: create$6().email("Invalid email!").required("Email is required!")
@@ -46899,6 +46932,9 @@ attempted value: ${formattedValue}
     const handleClose = () => {
       setIsSent(false);
       navigate2("/type-otp");
+    };
+    const handleCloseError = () => {
+      setIsError(false);
     };
     return /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "container signup-container" }, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "custom-shape-divider-top" }, /* @__PURE__ */ import_react43.default.createElement(
       "svg",
@@ -46931,14 +46967,22 @@ attempted value: ${formattedValue}
           className: "shape-fill"
         }
       )
-    )), /* @__PURE__ */ import_react43.default.createElement(Paper_default, { elevation: 5 }, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "sign-up-container" }, /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "h5", sx: { mb: 2 } }, "Forgot Password"), /* @__PURE__ */ import_react43.default.createElement(Box_default, null, /* @__PURE__ */ import_react43.default.createElement(
+    )), /* @__PURE__ */ import_react43.default.createElement(Paper_default, { elevation: 5 }, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "sign-up-container" }, /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "h5", sx: { mb: 2 } }, "Send OTP"), /* @__PURE__ */ import_react43.default.createElement(Box_default, null, /* @__PURE__ */ import_react43.default.createElement(
       Formik,
       {
         initialValues: initVal,
         onSubmit: sendEmail,
         validationSchema: sendEmailSchema
       },
-      /* @__PURE__ */ import_react43.default.createElement(Form2, null, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "body2" }, "Email"), /* @__PURE__ */ import_react43.default.createElement(Field, { className: "login-input", name: "to_email", type: "text" }), /* @__PURE__ */ import_react43.default.createElement(ErrorMessage, { name: "to_email" }, (msg) => /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react43.default.createElement("button", { type: "submit", className: "login-btn" }, "Send OTP"), /* @__PURE__ */ import_react43.default.createElement(
+      /* @__PURE__ */ import_react43.default.createElement(Form2, null, /* @__PURE__ */ import_react43.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "body2" }, "Email"), /* @__PURE__ */ import_react43.default.createElement(Field, { className: "login-input", name: "to_email", type: "text" }), /* @__PURE__ */ import_react43.default.createElement(ErrorMessage, { name: "to_email" }, (msg) => /* @__PURE__ */ import_react43.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react43.default.createElement(
+        "button",
+        {
+          type: "submit",
+          className: "login-btn",
+          style: { marginTop: "0.5rem" }
+        },
+        "Send OTP"
+      ), /* @__PURE__ */ import_react43.default.createElement(
         Snackbar_default,
         {
           autoHideDuration: 2e3,
@@ -46957,6 +47001,26 @@ attempted value: ${formattedValue}
             sx: { width: "100%" }
           },
           "An OTP has been sent to your email"
+        )
+      ), /* @__PURE__ */ import_react43.default.createElement(
+        Snackbar_default,
+        {
+          autoHideDuration: 2e3,
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center"
+          },
+          open: isError,
+          onClose: handleCloseError
+        },
+        /* @__PURE__ */ import_react43.default.createElement(
+          Alert_default,
+          {
+            onClose: handleCloseError,
+            severity: "success",
+            sx: { width: "100%" }
+          },
+          "Email does not exist in our database"
         )
       )))
     )))));
@@ -46985,7 +47049,7 @@ attempted value: ${formattedValue}
     };
     const sendOTP = (values3) => {
       const otpValues = Object.values(values3).join("");
-      if (otpValues == storedOtp) {
+      if (otpValues == JSON.parse(storedOtp).otp) {
         setAlert({
           ...alert,
           isOpen: true,
@@ -47053,7 +47117,15 @@ attempted value: ${formattedValue}
         validationSchema: sendOTPSchema,
         onSubmit: sendOTP
       },
-      /* @__PURE__ */ import_react44.default.createElement(Form2, null, /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2" }, "Enter the code that we sent to your email ", emailContext), /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "otp-input-container" }, /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp1", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp2", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp3", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp4", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp5", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp6", type: "text" })), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp1" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp2" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp3" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp4" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp5" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp6" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement("button", { type: "submit", className: "login-btn" }, "Submit"), /* @__PURE__ */ import_react44.default.createElement(
+      /* @__PURE__ */ import_react44.default.createElement(Form2, null, /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2" }, "Enter the code that we sent to your email ", emailContext), /* @__PURE__ */ import_react44.default.createElement(Box_default, { className: "otp-input-container" }, /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp1", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp2", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp3", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp4", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp5", type: "text" }), /* @__PURE__ */ import_react44.default.createElement(Field, { className: "otp-input", name: "otp6", type: "text" })), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp1" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp2" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp3" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp4" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp5" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(ErrorMessage, { name: "otp6" }, (msg) => /* @__PURE__ */ import_react44.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)), /* @__PURE__ */ import_react44.default.createElement(
+        "button",
+        {
+          type: "submit",
+          className: "login-btn",
+          style: { marginTop: "1rem" }
+        },
+        "Submit"
+      ), /* @__PURE__ */ import_react44.default.createElement(
         Snackbar_default,
         {
           autoHideDuration: 2e3,
@@ -47081,10 +47153,14 @@ attempted value: ${formattedValue}
   // src/pages/ResetPassword.js
   var import_react45 = __toESM(require_react(), 1);
   var ResetPassword = () => {
+    const [users, setUsers] = (0, import_react45.useState)([]);
     const [showPassword, setShowPassword] = (0, import_react45.useState)(false);
     const [showConfirmPassword, setShowConfirmPassword] = (0, import_react45.useState)(false);
     const [alert, setAlert] = (0, import_react45.useState)(false);
     const navigate2 = useNavigate();
+    (0, import_react45.useEffect)(() => {
+      getAllUsers().then((res) => setUsers(res.data)).catch((err) => console.log(err));
+    }, []);
     let initVal = {
       password: "",
       confirmPassword: ""
@@ -47094,11 +47170,21 @@ attempted value: ${formattedValue}
       confirmPassword: create$6().oneOf([create$9("password"), null], "Password does not match!").required("Confirm Password is required!")
     });
     const resetPass = (values3) => {
-      updatePassword(1, values3).then(() => {
-        setAlert(true);
-      }).catch(() => {
+      let otp = localStorage.getItem("otp");
+      if (otp) {
+        let findUser = users.find((user) => user.id == JSON.parse(otp).id);
+        if (findUser) {
+          updatePassword(findUser.id, values3).then(() => {
+            setAlert(true);
+          }).catch(() => {
+            navigate2("/login");
+          });
+        }
+        localStorage.removeItem("otp");
+      } else {
+        localStorage.removeItem("otp");
         navigate2("/login");
-      });
+      }
     };
     const handleClose = () => {
       setAlert(false);
@@ -47149,7 +47235,7 @@ attempted value: ${formattedValue}
           name: "password",
           type: showPassword ? "text" : "password"
         }
-      ), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "password-icons" }, showPassword ? /* @__PURE__ */ import_react45.default.createElement(FiEye, { onClick: () => setShowPassword(false) }) : /* @__PURE__ */ import_react45.default.createElement(FiEyeOff, { onClick: () => setShowPassword(true) })), /* @__PURE__ */ import_react45.default.createElement(ErrorMessage, { name: "password" }, (msg) => /* @__PURE__ */ import_react45.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)))), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react45.default.createElement(Typography_default, { variant: "body2" }, "Confirm Password"), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react45.default.createElement(
+      ), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "password-icons" }, showPassword ? /* @__PURE__ */ import_react45.default.createElement(FiEye, { onClick: () => setShowPassword(false) }) : /* @__PURE__ */ import_react45.default.createElement(FiEyeOff, { onClick: () => setShowPassword(true) }))), /* @__PURE__ */ import_react45.default.createElement(ErrorMessage, { name: "password" }, (msg) => /* @__PURE__ */ import_react45.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "form-group" }, /* @__PURE__ */ import_react45.default.createElement(Typography_default, { variant: "body2" }, "Confirm Password"), /* @__PURE__ */ import_react45.default.createElement(Box_default, { className: "password-container" }, /* @__PURE__ */ import_react45.default.createElement(
         Field,
         {
           className: "login-input",
@@ -47161,7 +47247,7 @@ attempted value: ${formattedValue}
         {
           onClick: () => setShowConfirmPassword(true)
         }
-      )), /* @__PURE__ */ import_react45.default.createElement(ErrorMessage, { name: "confirmPassword" }, (msg) => /* @__PURE__ */ import_react45.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg)))), /* @__PURE__ */ import_react45.default.createElement("button", { type: "submit", className: "register-btn" }, "Reset Password"), /* @__PURE__ */ import_react45.default.createElement(
+      ))), /* @__PURE__ */ import_react45.default.createElement(ErrorMessage, { name: "confirmPassword" }, (msg) => /* @__PURE__ */ import_react45.default.createElement(Typography_default, { variant: "body2", sx: { color: "red" } }, msg))), /* @__PURE__ */ import_react45.default.createElement("button", { type: "submit", className: "register-btn" }, "Reset Password"), /* @__PURE__ */ import_react45.default.createElement(
         Snackbar_default,
         {
           autoHideDuration: 2e3,
@@ -47190,24 +47276,29 @@ attempted value: ${formattedValue}
   var App = () => {
     const { isUserLoggedIn, setIsUserLoggedIn } = (0, import_react46.useContext)(UserContext);
     let user = localStorage.getItem("user");
+    let otp = localStorage.getItem("otp");
     const navigate2 = useNavigate();
     (0, import_react46.useEffect)(() => {
       if (user) {
         setIsUserLoggedIn(true);
-        navigate2("/home");
       } else {
         setIsUserLoggedIn(false);
         destroySession();
         navigate2("/login");
       }
     }, [user]);
-    return /* @__PURE__ */ import_react46.default.createElement(import_react46.default.Fragment, null, /* @__PURE__ */ import_react46.default.createElement(ThemeProvider4, { theme: theme_default }, /* @__PURE__ */ import_react46.default.createElement(AppbarContextProvider, null, /* @__PURE__ */ import_react46.default.createElement(SearchContextProvider, null, /* @__PURE__ */ import_react46.default.createElement(EmailContextProvider, null, " ", isUserLoggedIn ? /* @__PURE__ */ import_react46.default.createElement(import_react46.default.Fragment, null, /* @__PURE__ */ import_react46.default.createElement(Routes, null, /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/home", element: /* @__PURE__ */ import_react46.default.createElement(Home_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/movies", element: /* @__PURE__ */ import_react46.default.createElement(Movies_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/series", element: /* @__PURE__ */ import_react46.default.createElement(Series_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/list", element: /* @__PURE__ */ import_react46.default.createElement(MyList_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/search", element: /* @__PURE__ */ import_react46.default.createElement(SearchResults_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/:type/:id", element: /* @__PURE__ */ import_react46.default.createElement(Show_default, null) }), /* @__PURE__ */ import_react46.default.createElement(
+    (0, import_react46.useEffect)(() => {
+      if (!otp && !user) {
+        navigate2("/login");
+      }
+    }, [otp]);
+    return /* @__PURE__ */ import_react46.default.createElement(import_react46.default.Fragment, null, /* @__PURE__ */ import_react46.default.createElement(ThemeProvider4, { theme: theme_default }, /* @__PURE__ */ import_react46.default.createElement(AppbarContextProvider, null, /* @__PURE__ */ import_react46.default.createElement(SearchContextProvider, null, /* @__PURE__ */ import_react46.default.createElement(EmailContextProvider, null, isUserLoggedIn ? /* @__PURE__ */ import_react46.default.createElement(import_react46.default.Fragment, null, /* @__PURE__ */ import_react46.default.createElement(Routes, null, /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/home", element: /* @__PURE__ */ import_react46.default.createElement(Home_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/movies", element: /* @__PURE__ */ import_react46.default.createElement(Movies_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/series", element: /* @__PURE__ */ import_react46.default.createElement(Series_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/list", element: /* @__PURE__ */ import_react46.default.createElement(MyList_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/search", element: /* @__PURE__ */ import_react46.default.createElement(SearchResults_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/:type/:id", element: /* @__PURE__ */ import_react46.default.createElement(Show_default, null) }), /* @__PURE__ */ import_react46.default.createElement(
       Route,
       {
         path: "/:category/genre/:genreIds",
         element: /* @__PURE__ */ import_react46.default.createElement(FilterResult_default, null)
       }
-    ), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/profile", element: /* @__PURE__ */ import_react46.default.createElement(Profile_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/contact", element: /* @__PURE__ */ import_react46.default.createElement(Contact_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/privacy-policy", element: /* @__PURE__ */ import_react46.default.createElement(PrivacyPolicy_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/terms", element: /* @__PURE__ */ import_react46.default.createElement(Terms_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "*", element: /* @__PURE__ */ import_react46.default.createElement(ErrorPage_default, null) }))) : /* @__PURE__ */ import_react46.default.createElement(Routes, null, /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react46.default.createElement(Landing_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react46.default.createElement(LoginForm_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react46.default.createElement(SignUpForm_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/send-otp", element: /* @__PURE__ */ import_react46.default.createElement(SendEmail_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/type-otp", element: /* @__PURE__ */ import_react46.default.createElement(InputOtp_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/reset-password", element: /* @__PURE__ */ import_react46.default.createElement(ResetPassword_default, null) })))))));
+    ), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/profile", element: /* @__PURE__ */ import_react46.default.createElement(Profile_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/contact", element: /* @__PURE__ */ import_react46.default.createElement(Contact_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/privacy-policy", element: /* @__PURE__ */ import_react46.default.createElement(PrivacyPolicy_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/terms", element: /* @__PURE__ */ import_react46.default.createElement(Terms_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "*", element: /* @__PURE__ */ import_react46.default.createElement(ErrorPage_default, null) }))) : /* @__PURE__ */ import_react46.default.createElement(Routes, null, /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react46.default.createElement(Landing_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/login", element: /* @__PURE__ */ import_react46.default.createElement(LoginForm_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/signup", element: /* @__PURE__ */ import_react46.default.createElement(SignUpForm_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/send-otp", element: /* @__PURE__ */ import_react46.default.createElement(SendEmail_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/type-otp", element: /* @__PURE__ */ import_react46.default.createElement(InputOtp_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "/reset-password", element: /* @__PURE__ */ import_react46.default.createElement(ResetPassword_default, null) }), /* @__PURE__ */ import_react46.default.createElement(Route, { path: "*", element: /* @__PURE__ */ import_react46.default.createElement(ErrorPage_default, null) })))))));
   };
   var App_default = App;
 

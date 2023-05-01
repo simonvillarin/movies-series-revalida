@@ -39,6 +39,7 @@ const Show = () => {
     production_companies = [],
   } = show;
   const { setIsUserLoggedIn } = useContext(UserContext);
+  const [event, setEvent] = useState(false);
   const navigate = useNavigate();
   let token = getToken();
   let user = getCurrentUser();
@@ -67,7 +68,7 @@ const Show = () => {
     } else {
       handleError();
     }
-  }, [id]);
+  }, [id, event]);
 
   const getStrValue = (array, propName) => {
     let strVal = "";
@@ -101,10 +102,11 @@ const Show = () => {
       addUserList(user.id, payload, token)
         .then((res) => console.log("Show added to list"))
         .catch((err) => handleError());
+      setEvent(!event);
+      setIsSnackbarOpen(true);
     } else {
       handleError();
     }
-    setIsSnackbarOpen(true);
   };
 
   const handleRemoveFromList = () => {
@@ -112,10 +114,11 @@ const Show = () => {
       removeUserList(id, token)
         .then((res) => console.log("Removed from list"))
         .catch((err) => handleError());
+      setEvent(!event);
+      setIsSnackbarOpen(true);
     } else {
       handleError();
     }
-    setIsSnackbarOpen(true);
   };
 
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);

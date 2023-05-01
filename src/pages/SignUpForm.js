@@ -5,7 +5,6 @@ import { FiEye, FiEyeOff } from "react-icons/Fi";
 import * as yup from "yup";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { register } from "../services/UserService";
-import { HiOutlineXMark } from "react-icons/hi2";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,18 +14,18 @@ const SignUpForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     register(values)
-      .then((res) => console.log("User registered successfully!"))
+      .then((res) => navigate("/login"))
       .catch((err) => {
         console.log(err);
         setHasError(true);
       });
-    //navigate("/signup");
     resetForm({ values: "" });
   };
 
   let initVal = {
     firstName: "",
     lastName: "",
+    email: "",
     username: "",
     password: "",
     confirmPassword: "",
@@ -48,6 +47,7 @@ const SignUpForm = () => {
       .min(6, "Username is too short")
       .max(60, "Username is too long!")
       .required("Username is required!"),
+    email: yup.string().email("Invalid email!").required("Email is required!"),
     password: yup
       .string()
       .min(6, "Must be atleast 6 characters!")
@@ -112,6 +112,17 @@ const SignUpForm = () => {
                   <Typography variant="body2">Last Name</Typography>
                   <Field className="login-input" name="lastName" type="text" />
                   <ErrorMessage name="lastName">
+                    {(msg) => (
+                      <Typography variant="body2" sx={{ color: "red" }}>
+                        {msg}
+                      </Typography>
+                    )}
+                  </ErrorMessage>
+                </Box>
+                <Box className="form-group">
+                  <Typography variant="body2">Email</Typography>
+                  <Field className="login-input" name="email" type="email" />
+                  <ErrorMessage name="email">
                     {(msg) => (
                       <Typography variant="body2" sx={{ color: "red" }}>
                         {msg}

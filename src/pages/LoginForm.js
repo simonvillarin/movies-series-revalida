@@ -8,8 +8,6 @@ import { Form, Field, Formik, ErrorMessage } from "formik";
 import { login, getUserId, getUserById } from "../services/UserService";
 import { createSession } from "../services/UserService";
 import { UserContext } from "../context/UserContext";
-import { HiOutlineXMark } from "react-icons/hi2";
-import zIndex from "@mui/material/styles/zIndex";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,7 +32,6 @@ const LoginForm = () => {
                   firstName: res3.data.firstName,
                   lastName: res3.data.lastName,
                   username: res3.data.username,
-                  password: res3.data.password,
                 };
 
                 createSession(res1.data.token, user);
